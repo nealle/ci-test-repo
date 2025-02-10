@@ -8,8 +8,8 @@ on:
       - develop
 
 jobs:
-  test:
-    name: test
+  test-develop:
+    name: test-develop
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-22.04
     timeout-minutes: 10
