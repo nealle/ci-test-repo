@@ -1,0 +1,19 @@
+name: Pull Request CI for develop
+
+on:
+  pull_request:
+    # ready_for_review は draft プルリクを通常プルリクに切り替えた際に発火する。その他の項目はデフォルトの指定値。
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - develop
+
+jobs:
+  test:
+    name: test
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+      - name: run ci
+        run: cat readme.md | grep -q nop
